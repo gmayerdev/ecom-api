@@ -9,14 +9,14 @@ Simple E-commerce Application with a price surge mechanism
 
 ### Solution Design
 
-<ins>**Assumptions:**</ins>
+**Assumptions:**
 - Item API is accessible and there is no authentication required
 - When getting an item then create an Item View record, then retrieve the total count of Item Views, finally
 if the count of Item Views is equal or more than 10 recalculate the Item price by increasing it by 10%.
 - When a purchasing an item Spring Security must identify if the User is authenticated, if not then ??????
 
 
-<ins>**ToDo's:**</ins>
+**ToDo's:**
 - Need to create a Schedule Job to delete the Item Views older than an hour, consider running it every hour
 - Need to implement pagination for retrieving all of the items
 
