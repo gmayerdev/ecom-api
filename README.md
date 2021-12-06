@@ -21,12 +21,6 @@ if the count of Item Views is equal or more than 10 recalculate the Item price b
 - Entities and relationship
     -- Item has 0 or many ItemViews
     -- ItemView belongs to one Item, only exists if the Item exists
--
-
-**Things I would like to improve:**
-- Implement a scheduler to delete Item View records older than an hour, this would improve performance reducing the amount of records in the database
-- Implement pagination mechanism so that the request of all items if paged, this would improve performance not retrieving all items from the database
-
 
 ### Technical Specifications
 - Java 11
