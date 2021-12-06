@@ -15,13 +15,18 @@ Simple E-commerce Application with a price surge mechanism
 - The same user viewing the same item multiple times count against the price surge calculation.
 
 **Design**
-- Spring Boot RESTFul API adopting MVC
+
+![Diagram](https://user-images.githubusercontent.com/57781585/144940937-483e7a56-4145-4504-869c-1b0b4b36410c.png)
+- Spring Boot RESTFul API
+    -- Resource layer
+    -- Service layer
+    -- Repository layer interfacing with a H2 in memory database
 - Spring Security with JWT authentication
+    -- Custom Authentication Provider
+    -- JWT filters to intercept authentication and generate/validate token
 - Entities and relationship:
     -- Item has 0 or many ItemViews
     -- ItemView belongs to one Item, only exists if the Item exists
-
-![Diagram](https://user-images.githubusercontent.com/57781585/144940937-483e7a56-4145-4504-869c-1b0b4b36410c.png)
 
 ### Technical Specifications
 - Java 11
