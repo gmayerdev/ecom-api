@@ -124,7 +124,7 @@ curl --request POST \
 **GET: Login**
 Request: /login
 
-<ins>*There is a User created upon application startup User:test@ecomapi.com with Password:12345, below curl contains the Base64 of this User</ins>
+<em>*There is a User created upon application startup User:test@ecomapi.com with Password:12345, below curl contains the Base64 of this User as well as the verbose parameter so that the Response Headers are printed in the terminal</em>
 
 Response:
 ```
@@ -132,11 +132,11 @@ Response:
   "username": "test@ecomapi.com"
 }
 ```
-<ins>*Authorization JWT token gets added to the Headers to be used by requests</ins>
+<em>*Authorization JWT token gets added to the Headers to be used by requests</em>
 
 Example:
 ```
-curl --request GET \
+curl --verbose --request GET \
   --url http://localhost:8088/login \
   --header 'Authorization: Basic dGVzdEBlY29tYXBpLmNvbToxMjM0NQ=='
 ```
