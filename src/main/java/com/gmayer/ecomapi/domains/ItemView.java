@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -15,12 +13,15 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Data
-@Entity
+@Entity(name = "item_views")
 public class ItemView {
 
     @Id
     @GeneratedValue
     private UUID id;
-    private UUID itemId;
     private LocalDateTime viewedOn;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
 }

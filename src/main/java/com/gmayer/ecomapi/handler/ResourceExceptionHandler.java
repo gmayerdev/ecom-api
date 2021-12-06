@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class ResourceExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleException(IllegalArgumentException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<?> handleException(NoSuchElementException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> handleException(){
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

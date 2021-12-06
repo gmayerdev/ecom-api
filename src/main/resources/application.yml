@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: dev
 ---
 server:
   port: 8088
@@ -8,7 +8,7 @@ server:
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: dev
   jpa:
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect

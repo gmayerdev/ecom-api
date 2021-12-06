@@ -1,5 +1,6 @@
 package com.gmayer.ecomapi.services;
 
+import com.gmayer.ecomapi.domains.Item;
 import com.gmayer.ecomapi.domains.ItemView;
 import com.gmayer.ecomapi.repositories.ItemViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,11 @@ public class ItemViewService {
 
     /**
      * Create Item View
-     * @param itemId Id of Item
+     * @param item Id of Item
      */
-    public ItemView createItemView(UUID itemId){
+    public ItemView createItemView(Item item){
         ItemView itemView = new ItemView();
-        itemView.setItemId(itemId);
+        itemView.setItem(item);
         itemView.setViewedOn(LocalDateTime.now());
         itemViewRepository.save(itemView);
         return itemView;

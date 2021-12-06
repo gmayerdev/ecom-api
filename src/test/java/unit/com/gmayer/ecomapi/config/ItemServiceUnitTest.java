@@ -1,9 +1,8 @@
-package com.gmayer.ecomapi.service;
+package com.gmayer.ecomapi.config;
 
 
 import com.gmayer.ecomapi.domains.Item;
 import com.gmayer.ecomapi.dtos.ItemDto;
-import com.gmayer.ecomapi.dtos.ItemPurchaseDto;
 import com.gmayer.ecomapi.repositories.ItemRepository;
 import com.gmayer.ecomapi.services.ItemService;
 import com.gmayer.ecomapi.services.ItemViewService;
@@ -33,7 +32,6 @@ public class ItemServiceUnitTest {
 
     private Item itemMock;
     private ItemDto itemDtoMock;
-    private ItemPurchaseDto itemPurchaseDtoMock;
 
     @BeforeEach
     void setUp(){
@@ -46,12 +44,6 @@ public class ItemServiceUnitTest {
         itemDtoMock = ItemDto.builder()
                 .itemName("Basketball")
                 .itemDescription("An original NBA Basketball")
-                .itemPrice(40.00)
-                .build();
-
-        itemPurchaseDtoMock = ItemPurchaseDto.builder()
-                .itemId(UUID.randomUUID())
-                .itemQuantity(3)
                 .itemPrice(40.00)
                 .build();
     }
@@ -91,7 +83,7 @@ public class ItemServiceUnitTest {
         //When
         when(itemRepository.findById(itemId)).thenReturn(itemMockOptional);
         when(itemViewService.createItemView(itemMockOptional.get())).thenReturn(any());
-        when(itemViewService.getLastHourItemViewCountByItemId(itemMockOptional.get().getId())).thenReturn(10);
+        when(itemViewService.getLastHourItemViewCountByItemId(itemId)).thenReturn(10);
         ItemDto result = itemService.findById(itemId);
 
         //Then

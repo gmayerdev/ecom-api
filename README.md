@@ -13,12 +13,19 @@ Simple E-commerce Application with a price surge mechanism
 - Item API is accessible and there is no authentication required
 - When getting an item then create an Item View record, then retrieve the total count of Item Views, finally
 if the count of Item Views is equal or more than 10 recalculate the Item price by increasing it by 10%.
-- When a purchasing an item Spring Security must identify if the User is authenticated, if not then ??????
+- When purchasing an item authentication is enforced, the session will lasts for
 
+**Design**
+- Spring Boot RESTFul API, separating layers according to MVC pattern
+- Spring Security with JWT authentication
+- Entities and relationship
+    -- Item has 0 or many ItemViews
+    -- ItemView belongs to one Item, only exists if the Item exists
+-
 
-**ToDo's:**
-- Need to create a Schedule Job to delete the Item Views older than an hour, consider running it every hour
-- Need to implement pagination for retrieving all of the items
+**Things I would like to improve:**
+- Implement a scheduler to delete Item View records older than an hour, this would improve performance reducing the amount of records in the database
+- Implement pagination mechanism so that the request of all items if paged, this would improve performance not retrieving all items from the database
 
 
 ### Technical Specifications

@@ -2,9 +2,11 @@ package com.gmayer.ecomapi.resource;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gmayer.ecomapi.domains.Item;
 import com.gmayer.ecomapi.dtos.ItemDto;
 import com.gmayer.ecomapi.resources.ItemResource;
 import com.gmayer.ecomapi.services.ItemService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,6 +34,17 @@ public class ItemResourceUnitTest {
     @MockBean
     ItemService itemService;
 
+    private ItemDto itemDtoMock;
+
+    @BeforeEach
+    void setUp(){
+        itemDtoMock = ItemDto.builder()
+                .itemName("Basketball")
+                .itemDescription("An original NBA Basketball")
+                .itemPrice(40.00)
+                .build();
+    }
+
     @Test
     void whenGetItems_thenReturnAllItems() throws Exception {
         //Given
@@ -47,13 +60,7 @@ public class ItemResourceUnitTest {
     void givenItemId_whenItemIdValid_thenReturnItem() throws Exception {
         //Given
         String itemId = "3df5e84b-bc55-4afc-a93f-09bbb855b821";
-        ItemDto itemMock = ItemDto.builder()
-                .itemId(UUID.fromString(itemId))
-                .itemName("Basketball")
-                .itemDescription("An original NBA Basketball")
-                .itemPrice(40.00)
-                .build();
-        when(itemService.findById(UUID.fromString(itemId))).thenReturn(itemMock);
+        when(itemService.findById(UUID.fromString(itemId))).thenReturn(itemDtoMock);
 
         //When //Then
         mockMvc.perform(get("/items/"+itemId)
@@ -77,16 +84,9 @@ public class ItemResourceUnitTest {
     @Test
     void givenItem_whenItemValid_thenCreateItem() throws Exception {
         //Given
-        String itemId = "3df5e84b-bc55-4afc-a93f-09bbb855b821";
-        ItemDto itemMock = ItemDto.builder()
-                .itemId(UUID.fromString(itemId))
-                .itemName("Basketball")
-                .itemDescription("An original NBA Basketball")
-                .itemPrice(40.00)
-                .build();
         ObjectMapper objectMapper = new ObjectMapper();
-        String payload = objectMapper.writeValueAsString(itemMock);
-        when(itemService.createItem(itemMock)).thenReturn(itemMock);
+        String payload = objectMapper.writeValueAsString(itemDtoMock);
+        when(itemService.createItem(itemDtoMock)).thenReturn(itemDtoMock);
 
         //When //Then
         mockMvc.perform(post("/items/")

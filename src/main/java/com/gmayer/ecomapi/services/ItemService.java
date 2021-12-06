@@ -57,7 +57,7 @@ public class ItemService {
         Item item = itemOptional.get();
 
         // Create Item View Count
-        itemViewService.createItemView(item.getId());
+        itemViewService.createItemView(item);
 
         // Count Item Views and recalculate item price
         ItemDto itemDto = recalculateItemPrice(item);

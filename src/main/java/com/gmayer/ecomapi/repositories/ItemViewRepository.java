@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface ItemViewRepository extends JpaRepository<ItemView, UUID> {
 
-    @Query("SELECT i FROM ItemView i WHERE i.itemId = ?1")
+    @Query("SELECT i FROM item_views i WHERE i.item.id = ?1")
     List<ItemView> findAllByItemId(UUID itemId);
 }
