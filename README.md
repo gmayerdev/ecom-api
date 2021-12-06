@@ -4,23 +4,24 @@ Simple E-commerce Application with a price surge mechanism
 
 ### Use Cases
 - Ability to have users visualize items online via HTTP-accessible API
+- Restrict non authenticated users from buying an item
 - Utilize a price surge mechanism in order to raise prices on items that are visualized more than 10 times in the last hour
 
 
 ### Solution Design
 
 **Assumptions:**
-- Item API is accessible and there is no authentication required
-- When getting an item then create an Item View record, then retrieve the total count of Item Views, finally
-if the count of Item Views is equal or more than 10 recalculate the Item price by increasing it by 10%.
-- When purchasing an item authentication is enforced, the session will lasts for
+- Unauthenticated users and authenticated users viewing an item count against the price surge calculation.
+- The same user viewing the same item multiple times count against the price surge calculation.
 
 **Design**
-- Spring Boot RESTFul API, separating layers according to MVC pattern
+- Spring Boot RESTFul API adopting MVC
 - Spring Security with JWT authentication
-- Entities and relationship
+- Entities and relationship:
     -- Item has 0 or many ItemViews
     -- ItemView belongs to one Item, only exists if the Item exists
+
+![Diagram](https://user-images.githubusercontent.com/57781585/144940937-483e7a56-4145-4504-869c-1b0b4b36410c.png)
 
 ### Technical Specifications
 - Java 11
