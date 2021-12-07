@@ -10,9 +10,11 @@ Simple E-commerce Application with a price surge mechanism
 
 ### Solution Design
 
+
 **Assumptions:**
 - Unauthenticated users and authenticated users viewing an item count against the price surge calculation.
 - The same user viewing the same item multiple times count against the price surge calculation.
+
 
 **Design**
 
@@ -29,6 +31,18 @@ Simple E-commerce Application with a price surge mechanism
   - ItemView belongs to one Item, only exists if the Item exists
   - User
 
+**User Flow**
+1) User (Unauthenticated or Authenticated) views a specific item, system then finds item, after that the system creates an Item View record in the database, then the system recalculates the item price based on the amount of Item Views found in the last hour. If the amount is greater or equal to 10 then the price of the item is recalculated adding an additional 10% increase. The system then returns the Item.
+
+2) User (Unauthenticated or Authenticated) views all items, system returns all items and performs recalculation if a certain Item has more than 10 Item Views (same condition as #1).
+
+3) User (Unauthenticated) attempts to buy an Item, the system then intercepts the request and blocks the User as there is no token present returning a 401 Unauthorized.
+
+4) User (Unauthenticated) performs login, system intercepts the request and validates the username and password, if invalid returns a 401 Unauthorized, if valid returns 200 Ok with the Header response containin the JWT Token.
+
+5) User (Authenticated) buys an Item, the system then intercepts the request and validates the JWT Token, if invalid the system throws a bad request returning a 500, if valid the systems performs the purchase returning a 201 Created.
+
+
 ### Technical Specifications
 - Java 11
 - Spring Boot 2.6.1
@@ -41,6 +55,14 @@ Simple E-commerce Application with a price surge mechanism
 2. Open a terminal and navigate to the folder
 3. Build application using Gradle by running `gradle clean build`
 4. Run application using Gradle by running `gradle bootRun`
+5. Use API curl requests in the terminal (or Postman) to test application.
+
+
+### Testing the price surge mechanism
+1. Use below API to create an item
+2. From the create item response get the generated id of the Item
+3. Use the below API to get an item by id, run this for atleast 10 times
+4. Once the 10th time is reached the Item price will return with a 10% increase, and will stay the same price increase until within the last hour there are below 10 views.
 
 
 ### API
