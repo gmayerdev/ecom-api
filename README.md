@@ -26,6 +26,7 @@ Simple E-commerce Application with a price surge mechanism
 - Spring Security with JWT authentication
   - Custom Authentication Provider
   - JWT filters to intercept authentication and generate/validate token
+    - OBS: JSon Web Token along with Spring Security was used as the authentication/authorization mechanism as it allows the application to scale if needed as its a Stateless form of authentication (token holds the information about the user).
 - Entities and relationship:
   - Item has 0 or many ItemViews
   - ItemView belongs to one Item, only exists if the Item exists
