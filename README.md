@@ -57,6 +57,8 @@ Simple E-commerce Application with a price surge mechanism
 4. Run application using Gradle by running `gradle bootRun`
 5. Use API curl requests in the terminal (or Postman) to test application.
 
+<em>*As the application is using an in memory database stored within the application folder, do not run tests while the application is running or else you will see an exception thrown.</em>
+
 
 ### Testing the price surge mechanism
 1. Use below API to create an item
