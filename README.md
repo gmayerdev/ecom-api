@@ -62,7 +62,7 @@ Simple E-commerce Application with a price surge mechanism
 1. Use below API to create an item
 2. From the create item response get the generated id of the Item
 3. Use the below API to get an item by id, run this for atleast 10 times
-4. Once the 10th time is reached the Item price will return with a 10% increase, and will stay the same price increase until within the last hour there are below 10 views.
+4. Once the 10th time is reached the Item price will return with a 10% increase, and will stay the same price increase until within the last hour there are below 10 views. If you want to test this within a minute then open the cloned project folder, find and open the ItemViewService class, change the constant VIEW_COUNT_MIN_THRESHOLD to 1. Then run gradle clean build, and then gradle bootRun.
 
 
 ### API
